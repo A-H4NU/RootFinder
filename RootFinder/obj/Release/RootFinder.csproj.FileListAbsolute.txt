@@ -1,0 +1,16 @@
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.RootFinder.resources
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.Properties.Resources.resources
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.csproj.GenerateResource.Cache
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.csproj.CoreCompileInputs.cache
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.TrustInfo.xml
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.exe.manifest
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.exe
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.pdb
+D:\.VS Projects\RootFinder\RootFinder\bin\Release\RootFinder.exe.config
+D:\.VS Projects\RootFinder\RootFinder\bin\Release\RootFinder.exe.manifest
+D:\.VS Projects\RootFinder\RootFinder\bin\Release\RootFinder.application
+D:\.VS Projects\RootFinder\RootFinder\bin\Release\RootFinder.exe
+D:\.VS Projects\RootFinder\RootFinder\bin\Release\RootFinder.pdb
+D:\.VS Projects\RootFinder\RootFinder\bin\Release\OpenTK.xml
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.application
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.csprojResolveAssemblyReference.cache
