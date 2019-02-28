@@ -43,50 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Costura.dll" size="4096">
-      <assemblyIdentity name="Costura" version="3.3.2.0" publicKeyToken="9919EF960D84173D" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Wf6yrwvp7EzOwhJdI4Pj4oL0KKc=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MathParser.org-mXparser.dll" size="801792">
-      <assemblyIdentity name="MathParser.org-mXparser" version="4.3.3.0" publicKeyToken="0FBAB7ADD73ED6E2" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>0EreTwon9PABvNPib+mqsT0KbQk=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OpenTK.dll" size="5525504">
-      <assemblyIdentity name="OpenTK" version="3.0.1.0" publicKeyToken="BAD199FE84EB3DF4" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>9PdEDUI/9ELhkll6LpsR+MM6kTQ=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RootFinder.exe" size="2028032">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RootFinder.exe" size="2029056">
       <assemblyIdentity name="RootFinder" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>tw5eRDQfpV32Kfr/1p6mbw4kMZo=</dsig:DigestValue>
+        <dsig:DigestValue>rLiq5EK67M1xrDXtske6cSoB3go=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

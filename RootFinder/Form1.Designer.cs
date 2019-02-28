@@ -140,11 +140,12 @@
             // BarAccuracy
             // 
             this.BarAccuracy.Location = new System.Drawing.Point(12, 115);
+            this.BarAccuracy.Maximum = 5;
             this.BarAccuracy.Minimum = 1;
             this.BarAccuracy.Name = "BarAccuracy";
             this.BarAccuracy.Size = new System.Drawing.Size(127, 45);
             this.BarAccuracy.TabIndex = 9;
-            this.BarAccuracy.Value = 5;
+            this.BarAccuracy.Value = 3;
             this.BarAccuracy.Scroll += new System.EventHandler(this.BarAccuracy_Scroll);
             // 
             // LblAccuracy
@@ -154,7 +155,7 @@
             this.LblAccuracy.Name = "LblAccuracy";
             this.LblAccuracy.Size = new System.Drawing.Size(73, 12);
             this.LblAccuracy.TabIndex = 10;
-            this.LblAccuracy.Text = "Accuracy: 5";
+            this.LblAccuracy.Text = "Accuracy: 3";
             // 
             // BarYSqueeze
             // 

@@ -15,12 +15,13 @@ namespace RootFinder
 {
     class VisualFunction : GameWindow
     {
-        private double _speed;
+        private readonly double _speed;
         private double _x;
-        private double _range;
-        private double _deltaX;
+        private readonly double _range;
+        private readonly double _deltaX;
         private Function _function;
-        private double _ySqueeze;
+        private readonly double _ySqueeze;
+        public const double SenseRange = 1E-3;
 
         private RootFinder _form;
 
@@ -53,10 +54,16 @@ namespace RootFinder
 
         }
 
-        private double? _lastValue = null;
+        private double? _lastX = null;
+        private double? _lastY = null;
+        private double? _lastDiff = null;
         private int _stackCnt = 0;
 
         private double _step = 0;
+
+        private bool lastDone = false;
+
+        //private PossibleRoots _current = null;
 
         private Argument _arg = new Argument("x", double.NaN);
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -72,45 +79,117 @@ namespace RootFinder
                 if (_x > _range)
                     this.Close();
 
-                double value = _function.calculate(_arg);
-                if (_lastValue != null)
+                double _currentY = _function.calculate(_arg);
+                double _currentDiff = Math.Abs(_currentY);
+                
+                while (true)
                 {
-                    double lastCalc = _function.calculate(new Argument("x", _lastValue.Value));
-                    if (Math.Abs(value) <= 0.5)
+                    if (_lastX == null)
                     {
-                        if (value * lastCalc >= -100)
+                        _lastX = _x;
+                        _lastY = _function.calculate(_arg);
+                        _lastDiff = Math.Abs(_lastY.Value);
+                        break;
+                    }
+
+                    if (Math.Abs(_currentY - _lastY.Value) >= byte.MaxValue)
+                    {
+                        lastDone = false;
+                        _pList.Add(new Vector2(float.NaN, float.NaN));
+                        break;
+                    }
+
+                    if (_currentDiff <= double.Epsilon)
+                    {
+                        _form.AddRoot(_x);
+                        lastDone = true;
+                        break;
+                    }
+
+                    if (_lastY * _currentY <= 0)
+                    {
+                        double? root = (FindRoot1(_lastX.Value, _deltaX, double.Epsilon));
+                        if (root.HasValue)
                         {
-                            double? root = FindRoot(_lastValue.Value, _deltaX, double.Epsilon);
-                            if (root.HasValue) if(root.Value != double.NaN) _form.AddRoot(root.Value);
-
+                            _form.AddRoot(root.Value);
+                            lastDone = true;
                         }
-                        else
-                            _pList.Add(new Vector2(float.NaN, float.NaN));
+                        break;
                     }
-                    else
-                    {
 
+                    if (_currentDiff < _lastDiff && _currentDiff <= SenseRange)
+                    {
+                        if (!lastDone)
+                        {
+                            double? root = FindRoot2(_lastX.Value - _deltaX, _deltaX * 2, double.Epsilon);
+                            if (root != null)
+                            {
+                                _form.AddRoot(root.Value);
+                                lastDone = true;
+                            }
+                        }
+                        lastDone = true;
+                        break;
                     }
+                    lastDone = false;
+                    break;
                 }
-                _lastValue = _x;
+
+                _lastX = _x;
+                _lastY = _currentY;
+                _lastDiff = _currentDiff;
+
                 _stackCnt++;
                 if (_stackCnt >= 1)
                 {
-                    _pList.Add(new Vector2((float)_x, (float)value));
+                    _pList.Add(new Vector2((float)_x, (float)_currentY));
                     _stackCnt = 0;
                 }
                 _x += _deltaX;
             }
         }
 
-        public double? FindRoot(double x, double deltaX, double possibleError)
+        public double? FindRoot1(double x, double deltaX, double possibleError)
         {
-            double xp = double.NaN;
+            double x1 = x;
+            double x2 = x + deltaX;
+            while (true) {
+                double val1 = FuncValue(x1);
+                double val2 = FuncValue((x1 + x2) / 2);
+                double val3 = FuncValue(x2);
+                if (Math.Abs(val1) < possibleError)
+                {
+                    return x1;
+                }
+                if (Math.Abs(val2) < possibleError)
+                {
+                    return x2;
+                }
+                if (Math.Abs(val3) < possibleError)
+                {
+                    return (x1 + x2) / 2;
+                }
+                deltaX /= 2;
+                if (deltaX < double.Epsilon) return null;
+                if (val1 * val2 <= 0)
+                {
+                    x2 = x1 + deltaX;
+                }
+                else
+                {
+                    x1 += deltaX;
+                }
+            }
+        }
+
+        public double? FindRoot2(double x, double deltaX, double possibleError)
+        {
+            double xp = double.MaxValue;
             double div = double.NaN;
             double x1 = x;
             double x2 = x + deltaX;
             
-            while(Math.Abs(FuncValue(x1 - x2)) > possibleError)
+            while(Math.Abs(x1-x2) > possibleError)
             {
                 div = FuncValue(x1) - FuncValue(x2);
                 if (Math.Abs(div) < double.Epsilon) return null;

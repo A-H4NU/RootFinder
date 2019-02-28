@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,10 +22,9 @@ namespace RootFinder
             BtnStart.Enabled = false;
             TxtRoots.Text = String.Empty;
             _roots.Clear();
-            using (VisualFunction vf = new VisualFunction(500, 500, TxtFunction.Text, BarSpeed.Value / 10.0, BarRange.Value / 10.0, Math.Pow(2, -BarAccuracy.Value), BarYSqueeze.Value / 10.0, this))
+            using (VisualFunction vf = new VisualFunction(500, 500, TxtFunction.Text, BarSpeed.Value / 10.0, BarRange.Value / 10.0, Math.Pow(10, -BarAccuracy.Value), BarYSqueeze.Value / 10.0, this))
             {
                 vf.VSync = OpenTK.VSyncMode.Off;
-                //MessageBox.Show(vf.FindRoot(-0.5, 1, double.Epsilon).ToString());
                 vf.Run(144, 144);
                 BtnStart.Enabled = true;
             }
@@ -34,19 +34,22 @@ namespace RootFinder
 
         public void AddRoot(double root)
         {
-            foreach(double r in _roots)
+            root = Math.Round(root, 6);
+            foreach (double origR in _roots)
             {
-                if (Math.Abs(r - root) <= 0.000001)
+                if (Math.Abs(origR - root) <= 1E-6)
                 {
                     return;
                 }
             }
             _roots.Add(root);
-            TxtRoots.Text = "";
-            foreach(double r in _roots)
+
+            StringBuilder sb = new StringBuilder(16 * _roots.Count);
+            foreach (double r in _roots)
             {
-                TxtRoots.Text += String.Format("{0:F20}",r) + Environment.NewLine;
+                sb.AppendLine(r.ToString());
             }
+            TxtRoots.Text = sb.ToString();
         }
 
         private void BarRange_Scroll(object sender, EventArgs e)
