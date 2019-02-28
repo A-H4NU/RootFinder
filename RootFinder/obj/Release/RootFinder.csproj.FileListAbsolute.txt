@@ -10,3 +10,4 @@ D:\.VS Projects\RootFinder\RootFinder\bin\Release\RootFinder.pdb
 D:\.VS Projects\RootFinder\RootFinder\bin\Release\OpenTK.xml
 D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.csproj.CopyComplete
 D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.csprojAssemblyReference.cache
+D:\.VS Projects\RootFinder\RootFinder\obj\Release\RootFinder.csproj.Fody.CopyLocal.cache
